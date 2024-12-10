@@ -1,5 +1,6 @@
 import 'package:ecommerce_admin_app/containers/dashboard_text.dart';
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
+import 'package:ecommerce_admin_app/controllers/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class AdminHome extends StatefulWidget {
@@ -15,6 +16,15 @@ class _AdminHomeState extends State<AdminHome> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Admin Home'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                AuthServices().logOut();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/login', (route) => false);
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,5 +70,39 @@ class _AdminHomeState extends State<AdminHome> {
     );
   }
 
-  // simple 
+  // simple
+}
+
+class CheckUserLogInOrNot extends StatefulWidget {
+  const CheckUserLogInOrNot({super.key});
+
+  @override
+  State<CheckUserLogInOrNot> createState() => _CheckUserLogInOrNotState();
+}
+
+class _CheckUserLogInOrNotState extends State<CheckUserLogInOrNot> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AuthServices().isLoggedIn().then((onValue) => {
+          if (onValue)
+            {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/adminHome', (route) => false)
+            }
+          else
+            {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, '/login', (route) => false)
+            }
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
 }

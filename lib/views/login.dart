@@ -61,7 +61,51 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                            onPressed: () {}, child: Text("Forget Password"))
+                            child: Text("Forget Password"),
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                        title: Text("Forget Password"),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text("Enter your email "),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            TextFormField(
+                                              // validator: (value) =>
+                                              //     value!.isEmpty ? "Enter Email" : null,
+                                              controller: emailController,
+                                              decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  label: Text("Email")),
+                                            ),
+                                          ],
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("close")),
+                                          TextButton(
+                                              onPressed: () {
+                                                if (emailController
+                                                    .text.isEmpty) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                          content: Text(
+                                                              "Enter Email")));
+                                                }
+                                              },
+                                              child: Text("Send)"))
+                                        ],
+                                      ));
+                            })
                       ],
                     ),
                     SizedBox(
@@ -86,7 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                                                   context,
                                                   "/adminHome",
                                                   (route) => false)
-                                        } else {
+                                        }
+                                      else
+                                        {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(SnackBar(
                                             backgroundColor: Colors.red,
