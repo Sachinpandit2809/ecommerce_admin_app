@@ -1,4 +1,6 @@
+import 'package:ecommerce_admin_app/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthServices {
   // creating new account using eamil  password method
@@ -30,8 +32,15 @@ class AuthServices {
   }
 
   // reset password
-  Future<void> resetPassword(String email) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  Future<String> resetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      return "Mail Sent";
+    } on FirebaseAuthException catch (e) {
+      debugPrint(e.message.toString());
+      Utils.toastErrorMessage(e.message.toString());
+      return e.message.toString();
+    }
   }
 
   // check whether the user is sign in or not

@@ -66,45 +66,106 @@ class _LoginPageState extends State<LoginPage> {
                               showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                        title: Text("Forget Password"),
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text("Enter your email "),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            TextFormField(
-                                              // validator: (value) =>
-                                              //     value!.isEmpty ? "Enter Email" : null,
-                                              controller: emailController,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  label: Text("Email")),
-                                            ),
-                                          ],
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text("close")),
-                                          TextButton(
-                                              onPressed: () {
-                                                if (emailController
-                                                    .text.isEmpty) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                          content: Text(
-                                                              "Enter Email")));
-                                                }
-                                              },
-                                              child: Text("Send)"))
-                                        ],
-                                      ));
+                                          title: Text("Forget Password"),
+                                          content: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text("Enter your email "),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              TextFormField(
+                                                // validator: (value) =>
+                                                //     value!.isEmpty ? "Enter Email" : null,
+                                                controller: emailController,
+                                                decoration: InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder(),
+                                                    label: Text("Email")),
+                                              ),
+                                            ],
+                                          ),
+                                          //   actions: [
+                                          //     TextButton(
+                                          //         onPressed: () {
+                                          //           Navigator.pop(context);
+                                          //         },
+                                          //         child: Text("close")),
+                                          //     TextButton(
+                                          //         onPressed: () async {
+                                          //           if (emailController
+                                          //               .text.isEmpty) {
+                                          //             ScaffoldMessenger.of(context)
+                                          //                 .showSnackBar(SnackBar(
+                                          //                     content: Text(
+                                          //                         "Enter Email")));
+                                          //             return;
+                                          //           } else {
+                                          //             await AuthServices()
+                                          //                 .resetPassword(
+                                          //                     emailController.text)
+                                          //                 .then((onValue) => {
+                                          //                       if (onValue ==
+                                          //                           "Mail Sent")
+                                          //                         {
+
+                                          //                         }
+                                          //                     });
+                                          //             Navigator.pop(context);
+                                          //           }
+                                          //         },
+                                          //         child: Text("Send)"))
+                                          //   ],
+
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text("Cancel")),
+                                            TextButton(
+                                                onPressed: () async {
+                                                  if (emailController
+                                                      .text.isEmpty) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                            content: Text(
+                                                                "Email cannot be empty")));
+                                                    return;
+                                                  }
+                                                  await AuthServices()
+                                                      .resetPassword(
+                                                          emailController.text)
+                                                      .then((value) {
+                                                    if (value == "Mail Sent") {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(SnackBar(
+                                                              content: Text(
+                                                                  "Password reset link sent to your email")));
+                                                      Navigator.pop(context);
+                                                    } else {
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                              SnackBar(
+                                                        content: Text(
+                                                          value,
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        backgroundColor:
+                                                            Colors.red.shade400,
+                                                      ));
+                                                    }
+                                                  });
+                                                },
+                                                child: Text("Submit")),
+                                          ]));
                             })
                       ],
                     ),

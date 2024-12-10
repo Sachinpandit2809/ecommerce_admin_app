@@ -54,15 +54,19 @@ class _AdminHomeState extends State<AdminHome> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              HomeButton(name: "Orders", onPress: () {}),
-              HomeButton(name: "Products", onPress: () {}),
+              HomeButton(name: "Promos", onPress: () {}),
+              HomeButton(name: "Banners", onPress: () {}),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              HomeButton(name: "Orders", onPress: () {}),
-              HomeButton(name: "Products", onPress: () {}),
+              HomeButton(
+                  name: "Categories",
+                  onPress: () {
+                    Navigator.pushNamed(context, '/categories');
+                  }),
+              HomeButton(name: "Coupons", onPress: () {}),
             ],
           )
         ],
