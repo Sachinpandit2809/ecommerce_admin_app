@@ -15,7 +15,7 @@ class _HomeButtonState extends State<HomeButton> {
     return GestureDetector(
       onTap: widget.onPress,
       child: Container(
-        height: 65,
+        height: 55,
         width: MediaQuery.of(context).size.width * .42,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
