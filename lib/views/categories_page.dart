@@ -249,7 +249,7 @@ class _ModifyCategoriesState extends State<ModifyCategories> {
                           : SizedBox()
                       : Container(
                           margin: EdgeInsets.all(20),
-                          height: 300,
+                          height: 200,
                           width: double.infinity,
                           color: Colors.deepPurple.shade100,
                           child: Image.file(

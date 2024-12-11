@@ -48,7 +48,11 @@ class _AdminHomeState extends State<AdminHome> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               HomeButton(name: "Orders", onPress: () {}),
-              HomeButton(name: "Products", onPress: () {}),
+              HomeButton(
+                  name: "Products",
+                  onPress: () {
+                    Navigator.pushNamed(context, '/products');
+                  }),
             ],
           ),
           Row(
