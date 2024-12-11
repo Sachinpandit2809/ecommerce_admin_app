@@ -1,3 +1,5 @@
+import 'package:ecommerce_admin_app/containers/additional_conferm.dart';
+import 'package:ecommerce_admin_app/controllers/db_services.dart';
 import 'package:ecommerce_admin_app/models/products_model.dart';
 import 'package:ecommerce_admin_app/providers/admin_provider.dart';
 import 'package:ecommerce_admin_app/views/view_product.dart';
@@ -36,10 +38,27 @@ class _ProductsPageState extends State<ProductsPage> {
                             content: Text("Delete action cannot be undone"),
                             actions: [
                               TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text("Delete Product")),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AdditionalConferm(
+                                            contentText:
+                                                "Are you sure want to delete this product?",
+                                            onYes: () {
+                                              DbServices().deleteProducts(
+                                                  docId: products[index].id);
+                                              Navigator.pop(context);
+                                            },
+                                            onNo: () {
+                                              Navigator.pop(context);
+                                            });
+                                      });
+                                },
+                                child: Text("Delete Product",
+                                    style: TextStyle(color: Colors.red)),
+                              ),
                               TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
