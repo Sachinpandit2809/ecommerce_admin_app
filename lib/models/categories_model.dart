@@ -18,7 +18,8 @@ class CategoriesModel {
     return CategoriesModel(
         name: json["name"] ?? "",
         image: json["image"] ?? "",
-        id: json["id"] ?? "",
+        // id: json["id"] ?? "",
+        id: id??"",
         priority: json["priority"] ?? 0);
   }
 
