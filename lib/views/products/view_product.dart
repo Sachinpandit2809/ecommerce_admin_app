@@ -1,7 +1,7 @@
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/models/products_model.dart';
 import 'package:ecommerce_admin_app/utils/ext/ext.dart';
-import 'package:ecommerce_admin_app/views/discount.dart';
+import 'package:ecommerce_admin_app/views/products/discount.dart';
 import 'package:flutter/material.dart';
 
 class ViewProduct extends StatefulWidget {

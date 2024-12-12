@@ -1,6 +1,6 @@
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/controllers/auth_services.dart';
-import 'package:ecommerce_admin_app/views/login.dart';
+import 'package:ecommerce_admin_app/views/auth/login.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {

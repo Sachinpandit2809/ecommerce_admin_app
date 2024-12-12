@@ -1,6 +1,7 @@
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/controllers/auth_services.dart';
-import 'package:ecommerce_admin_app/views/signin.dart';
+import 'package:ecommerce_admin_app/utils/ext/ext.dart';
+import 'package:ecommerce_admin_app/views/auth/signin.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
-              SizedBox(height: 120),
+             120.heightBox,
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -35,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                           TextStyle(fontSize: 40, fontWeight: FontWeight.w700),
                     ),
                     Text("Get started with your account"),
-                    SizedBox(height: 10),
+                    10.heightBox,
                     TextFormField(
                       validator: (value) =>
                           value!.isEmpty ? "Enter Email" : null,
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                           border: OutlineInputBorder(), label: Text("Email")),
                     ),
-                    SizedBox(height: 10),
+                    10.heightBox,
                     TextFormField(
                       validator: (value) => value!.isEmpty || value.length < 6
                           ? "Enter password"
@@ -54,9 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                           border: OutlineInputBorder(),
                           label: Text("Password")),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    5.heightBox,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -73,9 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text("Enter your email "),
-                                              SizedBox(
-                                                height: 10,
-                                              ),
+                                             10.heightBox,
                                               TextFormField(
                                                 // validator: (value) =>
                                                 //     value!.isEmpty ? "Enter Email" : null,
@@ -169,9 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                             })
                       ],
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
+                   30.heightBox,
                     HomeButton(
                         name: "Login",
                         onPress: () {
@@ -207,9 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                           }
                         }),
-                    SizedBox(
-                      height: 20,
-                    ),
+                   20.heightBox,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

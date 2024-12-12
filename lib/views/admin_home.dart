@@ -58,8 +58,18 @@ class _AdminHomeState extends State<AdminHome> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              HomeButton(name: "Promos", onPress: () {}),
-              HomeButton(name: "Banners", onPress: () {}),
+              HomeButton(
+                  name: "Promos",
+                  onPress: () {
+                    Navigator.pushNamed(context, '/promo_banner',
+                        arguments: {"promo": true});
+                  }),
+              HomeButton(
+                  name: "Banners",
+                  onPress: () {
+                    Navigator.pushNamed(context, '/promo_banner',
+                        arguments: {"promo": false});
+                  }),
             ],
           ),
           Row(

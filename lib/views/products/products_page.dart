@@ -2,7 +2,7 @@ import 'package:ecommerce_admin_app/containers/additional_conferm.dart';
 import 'package:ecommerce_admin_app/controllers/db_services.dart';
 import 'package:ecommerce_admin_app/models/products_model.dart';
 import 'package:ecommerce_admin_app/providers/admin_provider.dart';
-import 'package:ecommerce_admin_app/views/view_product.dart';
+import 'package:ecommerce_admin_app/views/products/view_product.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -22,7 +22,9 @@ class _AdditionalConfermState extends State<AdditionalConferm> {
       content: Text(widget.contentText),
       actions: [
         TextButton(onPressed: widget.onNo, child: Text("No")),
-        TextButton(onPressed: widget.onYes, child: Text("Yes"))
+        TextButton(
+            onPressed: widget.onYes,
+            child: Text("Yes", style: TextStyle(color: Colors.red)))
       ],
     );
   }
