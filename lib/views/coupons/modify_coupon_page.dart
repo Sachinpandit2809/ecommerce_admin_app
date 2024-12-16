@@ -34,6 +34,15 @@ class _ModifyCouponPageState extends State<ModifyCouponPage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    descController.dispose();
+    codeController.dispose();
+    discountController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.id.isNotEmpty ? "Update Coupon" : "Add Coupon"),

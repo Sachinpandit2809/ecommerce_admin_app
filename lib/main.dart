@@ -1,8 +1,10 @@
 import 'package:ecommerce_admin_app/providers/admin_provider.dart';
+import 'package:ecommerce_admin_app/providers/loading_provider.dart';
 import 'package:ecommerce_admin_app/views/admin_home.dart';
 import 'package:ecommerce_admin_app/views/categories_page.dart';
 import 'package:ecommerce_admin_app/views/auth/login.dart';
 import 'package:ecommerce_admin_app/views/coupons/coupons_page.dart';
+import 'package:ecommerce_admin_app/views/orders/orders_page.dart';
 import 'package:ecommerce_admin_app/views/products/modify_product_page.dart';
 import 'package:ecommerce_admin_app/views/products/products_page.dart';
 import 'package:ecommerce_admin_app/views/auth/signin.dart';
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AdminProvider()),
+        ChangeNotifierProvider(create: (_) => LoadingProvider())
       ],
       child: MaterialApp(
         title: 'Ecommerce Admin App',
@@ -52,6 +55,8 @@ class MyApp extends StatelessWidget {
           '/promo_banner': (context) => PromoBannersPage(),
           '/modify_promo_banner': (context) => ModifyPromoBanner(),
           '/coupons': (context) => CouponsPage(),
+          '/orders': (context) => OrdersPage(),
+          '/view_order': (context) => ViewOrder()
         },
       ),
     );

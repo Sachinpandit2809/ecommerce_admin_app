@@ -1,8 +1,10 @@
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/controllers/auth_services.dart';
+import 'package:ecommerce_admin_app/providers/loading_provider.dart';
 import 'package:ecommerce_admin_app/utils/ext/ext.dart';
 import 'package:ecommerce_admin_app/views/auth/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,6 +17,13 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: [
-             120.heightBox,
+              120.heightBox,
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -72,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text("Enter your email "),
-                                             10.heightBox,
+                                              10.heightBox,
                                               TextFormField(
                                                 // validator: (value) =>
                                                 //     value!.isEmpty ? "Enter Email" : null,
@@ -166,19 +175,27 @@ class _LoginPageState extends State<LoginPage> {
                             })
                       ],
                     ),
-                   30.heightBox,
+                    30.heightBox,
                     HomeButton(
+                        loading:
+                            Provider.of<LoadingProvider>(context).loginLoading,
                         name: "Login",
                         onPress: () {
                           if (_formKey.currentState!.validate()) {
+                            Provider.of<LoadingProvider>(context, listen: false)
+                                .setLoginLoading(true);
                             AuthServices()
                                 .loginWithEmail(emailController.text,
                                     passwordController.text)
                                 .then((onValue) => {
+                                      Provider.of<LoadingProvider>(context,
+                                              listen: false)
+                                          .setLoginLoading(false),
                                       if (onValue == "Login Succesful")
                                         {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(SnackBar(
+                                                  backgroundColor: Colors.green,
                                                   content: Text(
                                                       "Login Successful"))),
                                           Navigator
@@ -202,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                           }
                         }),
-                   20.heightBox,
+                    20.heightBox,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -214,7 +231,7 @@ class _LoginPageState extends State<LoginPage> {
                                   MaterialPageRoute(
                                       builder: (context) => SignIn()));
                             },
-                            child: Text("Register"))
+                            child: Text("SignUp"))
                       ],
                     )
                   ],

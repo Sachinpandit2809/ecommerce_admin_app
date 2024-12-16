@@ -195,6 +195,16 @@ class _ModifyCategoriesState extends State<ModifyCategories> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+
+    super.dispose();
+    categoryController.dispose();
+    priorityController.dispose();
+    imageController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(widget.isUpdating ? "Update Category" : "Add Category"),

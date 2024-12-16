@@ -1,7 +1,9 @@
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/controllers/auth_services.dart';
+import 'package:ecommerce_admin_app/providers/loading_provider.dart';
 import 'package:ecommerce_admin_app/views/auth/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -14,6 +16,13 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,17 +66,26 @@ class _SignInState extends State<SignIn> {
                     height: 30,
                   ),
                   HomeButton(
+                      loading: Provider.of<LoadingProvider>(
+                        context,
+                      ).signInLoading,
                       name: "sign Up",
                       onPress: () {
+                        Provider.of<LoadingProvider>(context, listen: false)
+                            .setSignInLoading(true);
                         if (_formKey.currentState!.validate()) {
                           AuthServices()
                               .createAccountWithEmail(
                                   emailController.text, passwordController.text)
                               .then((onValue) => {
+                                    Provider.of<LoadingProvider>(context,
+                                            listen: false)
+                                        .setSignInLoading(false),
                                     if (onValue == "Account Created")
                                       {
                                         ScaffoldMessenger.of(context)
-                                            .showSnackBar(SnackBar(
+                                            .showSnackBar(const SnackBar(
+                                                backgroundColor: Colors.green,
                                                 content:
                                                     Text("Account Created"))),
                                         Navigator

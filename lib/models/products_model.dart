@@ -41,4 +41,7 @@ class ProductsModel {
             (e) => ProductsModel.toJson(e.data() as Map<String, dynamic>, e.id))
         .toList();
   }
+  //  static List<ProductsModel> fromJsonList(List<QueryDocumentSnapshot> list) {
+  //   return list.map((e) => ProductsModel.fromJson(e.data() as Map<String, dynamic>, e.id)).toList();
+  // }
 }

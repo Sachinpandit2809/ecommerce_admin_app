@@ -1,7 +1,9 @@
 import 'package:ecommerce_admin_app/containers/dashboard_text.dart';
 import 'package:ecommerce_admin_app/containers/home_buttons.dart';
 import 'package:ecommerce_admin_app/controllers/auth_services.dart';
+import 'package:ecommerce_admin_app/providers/admin_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AdminHome extends StatefulWidget {
   const AdminHome({super.key});
@@ -19,6 +21,7 @@ class _AdminHomeState extends State<AdminHome> {
         actions: [
           IconButton(
               onPressed: () {
+                Provider.of<AdminProvider>(context, listen: false).cancelProvider();
                 AuthServices().logOut();
                 Navigator.pushNamedAndRemoveUntil(
                     context, '/login', (route) => false);
@@ -31,23 +34,51 @@ class _AdminHomeState extends State<AdminHome> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Container(
-            height: 235,
+            height: 260,
             padding: EdgeInsets.all(12),
             margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DashboardText(keyword: "total Product", value: "100"),
-                DashboardText(keyword: "total Product", value: "100"),
-                DashboardText(keyword: "total Product", value: "100"),
-              ],
+            decoration: BoxDecoration(
+              color: Colors.deepPurple.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(12),
             ),
+            child: Consumer<AdminProvider>(builder: (context, value, _) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  DashboardText(
+                      keyword: "Total Categories",
+                      value: "${value.categories.length}"),
+                  DashboardText(
+                      keyword: "Total Products",
+                      value: "${value.products.length}"),
+                  DashboardText(
+                      keyword: "Total Orders", value: "${value.totalOrders}"),
+                  DashboardText(
+                      keyword: "Ordered Not Shipped",
+                      value: "${value.orderPendingProcess}"),
+                  DashboardText(
+                    keyword: "Ordered Shipped",
+                    value: "${value.ordersOnTheWay}",
+                  ),
+                  DashboardText(
+                      keyword: "Ordered Delivered",
+                      value: "${value.ordersDelivered}"),
+                  DashboardText(
+                      keyword: "Ordered Cancelled",
+                      value: "${value.ordersCancelled}"),
+                ],
+              );
+            }),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              HomeButton(name: "Orders", onPress: () {}),
+              HomeButton(
+                  name: "Orders",
+                  onPress: () {
+                    Navigator.pushNamed(context, '/orders');
+                  }),
               HomeButton(
                   name: "Products",
                   onPress: () {
