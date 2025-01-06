@@ -80,26 +80,28 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       content: Text("Delete action cannot be undone"),
                       actions: [
                         TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              showDialog(
-                                  context: context,
-                                  builder: (context) => AdditionalConferm(
-                                      contentText:
-                                          "Are you sure you want to delete this category?",
-                                      onYes: () {
-                                        DbServices().deleteCategories(
-                                            docId: categories[index].id);
-                                        Navigator.pop(context);
-                                      },
-                                      onNo: () {
-                                        Navigator.pop(context);
-                                      }));
-                              // DbServices().deleteCategories(
-                              //     docId: categories[index].id);
-                              // Navigator.pop(context);
-                            },
-                            child: Text("Delete Category")),
+                          onPressed: () {
+                            Navigator.pop(context);
+                            showDialog(
+                                context: context,
+                                builder: (context) => AdditionalConferm(
+                                    contentText:
+                                        "Are you sure you want to delete this category?",
+                                    onYes: () {
+                                      DbServices().deleteCategories(
+                                          docId: categories[index].id);
+                                      Navigator.pop(context);
+                                    },
+                                    onNo: () {
+                                      Navigator.pop(context);
+                                    }));
+                            // DbServices().deleteCategories(
+                            //     docId: categories[index].id);
+                            // Navigator.pop(context);
+                          },
+                          child: Text("Delete Category",
+                              style: TextStyle(color: Colors.red)),
+                        ),
                         TextButton(
                             onPressed: () {
                               Navigator.pop(context);

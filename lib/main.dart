@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LoadingProvider())
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Ecommerce Admin App',
         theme: ThemeData(
           // tested with just a hot reload.

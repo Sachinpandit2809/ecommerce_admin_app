@@ -62,6 +62,9 @@ class _ProductsPageState extends State<ProductsPage> {
                               TextButton(
                                   onPressed: () {
                                     Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                        context, "/add_products",
+                                        arguments: products[index]);
                                   },
                                   child: Text("Edit Product")),
                             ],

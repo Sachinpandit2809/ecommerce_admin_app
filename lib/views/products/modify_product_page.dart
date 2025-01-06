@@ -138,7 +138,7 @@ class _ModifyProductPageState extends State<ModifyProductPage> {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: Text("Select Category"),
+                              title: const Text("Select Category"),
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,7 +187,7 @@ class _ModifyProductPageState extends State<ModifyProductPage> {
                 image == null
                     ? imageController.text.isNotEmpty
                         ? Container(
-                            margin: EdgeInsets.all(20),
+                            margin: const EdgeInsets.all(20),
                             height: 100,
                             width: double.infinity,
                             color: Colors.deepPurple.shade100,
@@ -196,9 +196,9 @@ class _ModifyProductPageState extends State<ModifyProductPage> {
                               fit: BoxFit.contain,
                             ),
                           )
-                        : SizedBox()
+                        : const SizedBox()
                     : Container(
-                        margin: EdgeInsets.all(20),
+                        margin: const EdgeInsets.all(20),
                         height: 200,
                         width: double.infinity,
                         color: Colors.deepPurple.shade100,
@@ -207,7 +207,7 @@ class _ModifyProductPageState extends State<ModifyProductPage> {
                           fit: BoxFit.contain,
                         ),
                       ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 HomeButton(
                     name: "Pick Image",
                     onPress: () {

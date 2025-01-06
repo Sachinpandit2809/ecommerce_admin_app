@@ -17,7 +17,7 @@ class _ViewProductState extends State<ViewProduct> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.only(top: 10, left: 20, right: 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,14 +39,14 @@ class _ViewProductState extends State<ViewProduct> {
               10.heightBox,
               Text(
                 widget.product.name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               8.heightBox,
               Row(
                 children: [
                   Text(
                     "₹${widget.product.old_price.toString()}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                       decoration: TextDecoration.lineThrough,
@@ -55,20 +55,20 @@ class _ViewProductState extends State<ViewProduct> {
                   10.widthBox,
                   Text(
                     "₹${widget.product.new_price.toString()}",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w600,
                         color: Colors.black),
                   ),
                   8.widthBox,
-                  Icon(
+                  const Icon(
                     Icons.arrow_downward_sharp,
                     color: Colors.green,
                     size: 20,
                   ),
                   Text(
                     "${discountPrice(widget.product.old_price, widget.product.new_price)}% off",
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.green),
@@ -76,13 +76,13 @@ class _ViewProductState extends State<ViewProduct> {
                 ],
               ),
               widget.product.maxQuantity == 0
-                  ? Text("Out of Stock",
+                  ? const Text("Out of Stock",
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.red))
                   : Text("Only ${widget.product.maxQuantity} are left in stock",
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Colors.green)),
@@ -90,13 +90,13 @@ class _ViewProductState extends State<ViewProduct> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Description",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    "${widget.product.description}",
-                    style: TextStyle(
+                    widget.product.description,
+                    style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w400,
                     ),
@@ -107,30 +107,30 @@ class _ViewProductState extends State<ViewProduct> {
           ),
         ),
       ),
-      bottomNavigationBar: Row(
-        children: [
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: 55,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Add to cart"),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder()))),
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
-              height: 55,
-              child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Buy Now"),
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.green,
-                      shape: RoundedRectangleBorder()))),
-        ],
-      ),
+      // bottomNavigationBar: Row(
+      //   children: [
+      //     SizedBox(
+      //         width: MediaQuery.of(context).size.width * 0.5,
+      //         height: 55,
+      //         child: ElevatedButton(
+      //             onPressed: () {},
+      //             child: Text("Add to cart"),
+      //             style: ElevatedButton.styleFrom(
+      //                 backgroundColor: Theme.of(context).primaryColor,
+      //                 foregroundColor: Colors.white,
+      //                 shape: RoundedRectangleBorder()))),
+      //     SizedBox(
+      //         width: MediaQuery.of(context).size.width * 0.5,
+      //         height: 55,
+      //         child: ElevatedButton(
+      //             onPressed: () {},
+      //             child: Text("Buy Now"),
+      //             style: ElevatedButton.styleFrom(
+      //                 foregroundColor: Colors.white,
+      //                 backgroundColor: Colors.green,
+      //                 shape: RoundedRectangleBorder()))),
+      //   ],
+      // ),
     );
   }
 }
